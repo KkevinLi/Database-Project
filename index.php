@@ -45,7 +45,7 @@ include "connectdb.php";
 		$mysqli->close();
 		?> 
 	</ul>
-	<button id="button"><a href="login_html.php">login</a></button>
+	<button id="button"><a href="login.php">login</a></button>
 
 </body>
 </html>

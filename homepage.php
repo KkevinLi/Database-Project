@@ -9,7 +9,6 @@ include "connectdb.php";
 </head>
 <body>
 	<?php
-	session_start();
 	if(isset($_SESSION["error"]) && $_SESSION["error"] == 1) {
 		echo "You were redirected here because of an error";
 	}
@@ -32,7 +31,6 @@ if($stmt= $mysqli->prepare("SELECT fname, lname FROM person WHERE pid = ?")){
 	}
 	$stmt->close(); 
 }
-}
 ?>
 	<h2>Click For More Options</h2>
 	<button id="button"><a href="logout.php">logout</a></button>
@@ -43,7 +41,7 @@ if($stmt= $mysqli->prepare("SELECT fname, lname FROM person WHERE pid = ?")){
 	<button id="button"><a href="check_events.php">Check Event</a></button>
 	<button id="button"><a href="delete_html.php">Delete</a></button>
 	<button id="button"><a href="comment.php">Comment</a></button>
-
+<?php } ?>
 	<div id="Nyulogo">
 		<center>
 			<img src="NYUPoly.jpg" alt="NYU POLYTECHNIC UNIVERSITY" width="750" height="300">
@@ -55,6 +53,7 @@ if($stmt= $mysqli->prepare("SELECT fname, lname FROM person WHERE pid = ?")){
 	
 	<ul id="topiclist">
 		<?php
+
 			foreach ($printy as $key => $p) { 
 		?>
 				<li> <?php echo "Topic: "; echo $p['topic']; ?></br>

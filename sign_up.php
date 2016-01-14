@@ -6,12 +6,11 @@
 <!-- Redirect to profile page when its done -->
 
 <?php
-session_start();
 include "connectdb.php";
 
 if(!isset($_SESSION["UserID"])) {
 	echo "You are not logged in. You must be signed in to sign up for an event. Redirecting to login... \n";
-	  header("refresh: 3; login_html.php");
+	  header("refresh: 3; login.php");
 }
 else{
 	

@@ -7,7 +7,6 @@
 <h1>The Upcoming Events For the Next Three Days</h1><br>
 
 <?php
-session_start();
 include "connectdb.php";
 
  if (!($stmt = $mysqli->prepare("select * FROM event where edatetime between curdate() and curdate() + ? "))) {

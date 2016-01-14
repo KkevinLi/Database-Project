@@ -9,7 +9,6 @@ include "connectdb.php";
 </head>
 <body>
 	<?php
-	session_start();
 
 	if(!isset($_SESSION["UserID"])) {
 		echo "You are not logged in. You must be logged in to comment. Redirecting to login... \n";

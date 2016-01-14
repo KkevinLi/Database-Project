@@ -1,6 +1,5 @@
 <!-- <?php
 	include "connectdb.php";
-// 	session_start();
 // 	include "login.php";
 ?> -->
 <!DOCTYPE html>
@@ -11,7 +10,6 @@
 </head>
 <body>
 	<?php
-	session_start();
 	// require_once("connectdb.php");
 	// $id=$_SESSION["UserID"];
 	// $result = mysql_query("SELECT * FROM person where pid='$id'");
@@ -23,7 +21,7 @@
 	// echo $_SESSION["UserID"];
 	if(!isset($_SESSION["UserID"])) {
 		echo "You are not logged in. You must be logged in to comment. Redirecting to login... \n";
-		header("refresh: 3; login_html.php");
+		header("refresh: 3; login.php");
 		'<br/><p>You will be redirected in 3 seconds or click <a href="homepage.php">here</a>.</p>';
 	}	
 	$pid=$_SESSION["UserID"];
