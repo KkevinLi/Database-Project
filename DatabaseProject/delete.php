@@ -4,7 +4,7 @@
 <!-- Delete Person; Any advisor is allowed to do this -->
 <body>
 
-<h1>User Delete Page For Advisors</h1><br>
+<h1 style="color:blue; font-size:40px;">Delete Page For Advisors</h1><br>
 
 <?php
 include "connectdb.php";
@@ -12,12 +12,28 @@ include "connectdb.php";
 if(!isset($_SESSION["UserID"])) {
 	echo "You are not logged in. You must be signed in to sign up for an event. Redirecting to login... \n";
 	  header("refresh: 3; login.php");
-
 	  }
 
-else{
+	  else if(!(isset($_POST["delete-id"]))){  ?>
+	  
+<div class="login">
+	<h2>Delete a User</h2>
+		<ul>
+   <form method="post" action="delete.php">
+       <p><label for="login">Username </label><input type="text" name="delete-id" value="" placeholder="Person ID" required></p>
+      </p>
+    <p class="submit">
+     <input type="submit" name="commit" value="submit">
+    </p>
+   </ul>
+</div>
+</form>
+		  
+<?php }
 
-if($stmt = $mysqli->prepare("select pid from advisor where pid = ? ")){
+	  else{
+		  
+	  if($stmt = $mysqli->prepare("select pid from advisor where pid = ? ")){
 	
 	$myID = $_SESSION["UserID"];
 	$stmt->bind_param("s",$myID);
@@ -26,12 +42,12 @@ if($stmt = $mysqli->prepare("select pid from advisor where pid = ? ")){
 		echo "You are an advisor therefore you can delete students <br>";
 
 	$stmt->close();
- $UID = $_POST["id"];
+ 
+ $UID = $_POST["delete-id"];
  	 
 	 $mysqli->query("SET FOREIGN_KEY_CHECKS=0");
  if (($stmt = $mysqli->prepare("delete club_comment, event_comment,comment, sign_up, role_in, member_of, interested_in, advisor_of, student, person  
- from person 
- left join student 
+ from person left join student 
  on student.pid = person.pid
  left join interested_in 
  on interested_in.pid = person.pid
@@ -59,15 +75,10 @@ else{
 	echo "failed...";
 	}
 //		$stmt->close();		
-	
 	}
-
 	 $mysqli->query("SET FOREIGN_KEY_CHECKS=1");	
-
-
-
 		}
-	
+
 	else{
 		echo "This page is for advisor's only <br>";
 		echo "You will be redirected to the homepage...";

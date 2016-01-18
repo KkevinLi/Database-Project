@@ -1,7 +1,14 @@
 <?php
 include "connectdb.php";
 
-if(!(isset($_POST["id"]) && isset($_POST["pass"]))){ ?>
+if(isset($_SESSION["UserID"])) {
+	echo "You are already logged in. You will be redirected in 3 seconds \n";
+	  header("refresh: 3; homepage.php");
+}
+// Show form only if user is not signed in. Prevent signed in users from seeing form
+else if(!(isset($_POST["id"]) && isset($_POST["pass"]))){ 
+?>
+
 <!DOCTYPE html>
 <html>
 <!--Kevin Li-->
@@ -27,11 +34,8 @@ if(!(isset($_POST["id"]) && isset($_POST["pass"]))){ ?>
 </form>
 </body>
 <?php
-}
-else if(isset($_SESSION["UserID"])) {
-	echo "You are already logged in. You will be redirected in 3 seconds \n";
-	  header("refresh: 3; homepage.php");
-}
+}  //Finish off the else if above
+
 else if ($stmt = $mysqli->prepare("select pid,fname from person where pid= ? and passwd = ?")) {
 	 $UID = $_POST["id"];
 	 $UPass = md5($_POST["pass"]);
