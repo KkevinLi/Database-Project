@@ -51,7 +51,7 @@ if($stmt= $mysqli->prepare("SELECT fname, lname FROM person WHERE pid = ?")){
 	<h2> OFFERED CLUBS </h2>
 	<p> Displayed By Topics </p>
 	
-	<ul id="topiclist">
+	<ul class ="list-inline" id="topiclist">
 		<?php
 
 			foreach ($printy as $key => $p) { 
