@@ -12,10 +12,10 @@ include "connectdb.php";
 
 	if(!isset($_SESSION["UserID"])) {
 		echo "You are not logged in. You must be logged in to comment. Redirecting to login... \n";
-		header("refresh: 3; login_html.php");
-		'<br/><p>You will be redirected in 3 seconds or click <a href="homepage.php">here</a>.</p>';
+		header("refresh: 3; login.php");
+		'<br/><p>You will be redirected in 3 seconds or click <a href="index.php">here</a>.</p>';
 	}	
-	
+	else{
 	?>
 	<h1> Comments </h1> <br/>
 	
@@ -45,7 +45,7 @@ include "connectdb.php";
 	<?php
 	$clubtype = $_POST['cluby'];
 		$users_comment = $_POST['newcom'];
-		$users_comment = mysql_real_escape_string($users_comment);
+		$users_comment =  mysqli_real_escape_string($mysqli,$users_comment);
 
     if($stmt= $mysqli->prepare("SELECT max(comment_id) FROM comment")){
    		$stmt->execute();
@@ -128,7 +128,7 @@ include "connectdb.php";
 	// 	echo $c['ctext'];
 	// }
 	$mysqli->close();
-	?>	</p><br/>
-	<button id="button"><a href="homepage.php">Homepage</a></button>
+	}?>	</p><br/>
+	<button id="button"><a href="index.php">Homepage</a></button>
 </body>
 </html>

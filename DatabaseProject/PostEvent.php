@@ -80,7 +80,7 @@ if($stmt = $mysqli->prepare("select pid,clubid from role_in where pid = ? and ro
 		echo "This page is for admin's only ";
 		echo "You will be redirected to the homepage...";
 		$_SESSION["error"] = 1;
-		header("refresh: 3; homepage.php");
+		header("refresh: 3; index.php");
 		$stmt->close();
 		}		
 
@@ -92,6 +92,6 @@ $_SESSION["error"] = 0;
  ?>
 
 </body>
-<p>	Return to <a href="homepage.php">Homepage <a/>
+<p>	Return to <a href="index.php">Homepage </a>
 </p>
 </html>

@@ -61,11 +61,11 @@ foreach($eventArray as $x => $x_value) {
 		}
 	
 	else{
-		echo "This page is for admin's only";
+		echo "This page is for admin's only <br>";
 		echo "You will be redirected to the homepage...";
 		$stmt->close();
 		$_SESSION["error"] = 1;
-		header("refresh: 3; homepage.php");
+		header("refresh: 3; index.php");
 		}		
 		}
 }
@@ -74,6 +74,6 @@ foreach($eventArray as $x => $x_value) {
  ?>
 
 </body>
-<p>	Return to <a href="homepage.php">Homepage <a/>
+<p>	Return to <a href="index.php">Homepage </a>
 </p>
 </html>

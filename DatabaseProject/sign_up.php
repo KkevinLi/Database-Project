@@ -4,7 +4,7 @@
 
 
 <!-- Redirect to profile page when its done -->
-
+<div class = "container-fluid">
 <?php
 include "connectdb.php";
 
@@ -13,8 +13,8 @@ if(!isset($_SESSION["UserID"])) {
 	  header("refresh: 3; login.php");
 }
 else{
-	
-$evName = $_GET["EventName"];
+	if(isset($_GET["EventName"])){
+		$evName = $_GET["EventName"];
 
 echo " Signing up for the $evName event!!<br>";
 
@@ -54,7 +54,7 @@ if ($stmt = $mysqli->prepare("select pid from sign_up natural join event where e
 		if($stmt->fetch()){
 			echo "You are already in this event";
 			echo "<br> Redirecting you to the upcoming events page... <br>";
-				header("refresh: 3; event_viewer.php");	  
+			header("refresh: 3; event_viewer.php");	  
 		}
 		else{
 			$stmt->close();
@@ -75,10 +75,13 @@ if ($stmt = $mysqli->prepare("select pid from sign_up natural join event where e
 	}
 
 	$mysqli->close();  
+	}
+	else
+		echo "No event was selected. Redirecting to header page.";
 	$_SESSION["error"] = 0;
-	 header("refresh: 3; homepage.php");
+	 header("refresh: 3; index.php");
 }
  
 ?>
-
+</div>
 </html>

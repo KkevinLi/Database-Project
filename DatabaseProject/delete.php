@@ -83,7 +83,7 @@ else{
 		echo "This page is for advisor's only <br>";
 		echo "You will be redirected to the homepage...";
 		$_SESSION["error"] = 1;
-		header("refresh: 3; homepage.php");	
+		header("refresh: 3; index.php");	
 	//	$stmt->close();
 
 		}		
@@ -92,7 +92,7 @@ else{
 	 $mysqli->close();  
 	$_SESSION["error"] = 0;
 	echo "<br>Redirecting in 3 seconds...." ;
-	header("refresh: 3; homepage.php");
+	header("refresh: 3; index.php");
 }
 ?>
 </body>

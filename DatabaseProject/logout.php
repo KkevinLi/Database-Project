@@ -7,7 +7,7 @@
 session_start();
 session_destroy();
 echo "You have logged out";
-  header("refresh: 2; homepage.php");
+  header("refresh: 2; index.php");
 ?>
 
 </html>

@@ -1,7 +1,7 @@
-<!-- <?php
+<?php
 	include "connectdb.php";
 // 	include "login.php";
-?> -->
+?> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +9,25 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+<div class = "container">
+<div class = "row">	
+	<ul class = "nav nav-tabs">
+	<li><a href="index.php">HomePage</a></li>
+	<li><a href="sign_up.php">Sign Up</a></li>
+	<li><a href="PostEvent_html.php">Post Event</a></li>
+	<li><a href="event_veiwer.php">View Event</a></li>
+	<li><a href="check_events.php">Check Event</a></li>
+	<li><a href="delete.php">Delete Comment</a></li>
+	<li><a href="comment.php">Post Comment</a></li>
+<?php
+	if(isset($_SESSION["UserID"]))
+	 echo "<li class ='navbar-right'><a href='logout.php'>Logout</a> </li>";
+	else
+		echo "<li class ='navbar-right'><a href='login.php'>Login</a></li>";
+?>
+	</ul>
+</div>
+</div>
 	<?php
 	// require_once("connectdb.php");
 	// $id=$_SESSION["UserID"];
@@ -20,10 +39,11 @@
 	// }
 	// echo $_SESSION["UserID"];
 	if(!isset($_SESSION["UserID"])) {
-		echo "You are not logged in. You must be logged in to comment. Redirecting to login... \n";
+		echo "<br>You are not logged in. You must be logged in to continue. Redirecting to login... \n";
 		header("refresh: 3; login.php");
-		'<br/><p>You will be redirected in 3 seconds or click <a href="homepage.php">here</a>.</p>';
+		'<br/><p>You will be redirected in 3 seconds or click <a href="index.php">here</a>.</p>';
 	}	
+	else{
 	$pid=$_SESSION["UserID"];
     if($stmt= $mysqli->prepare("SELECT fname, lname FROM person WHERE pid = ?")){
 	    $stmt->bind_param("s",$pid);
@@ -45,14 +65,12 @@
 		}
 		$stmt->close();
  	}
-
-	?>
-	<?php
+	
 	if($gender == "Male"){
 	?>
 	<div id="prologo">
 		<center>
-			<img src="propic.jpg" alt="TEMP PROFILE PIC" width="400" height="400">
+			<img src="propic.jpg" alt="TEMP PROFILE PIC" width="300" height="300">
 		</center>
 	</div>
 	<?php
@@ -72,7 +90,7 @@
 	<table width="500" border="0" align="center" cellpadding="5">
 		<tr>
 	    	<td id="introPro" height="26" colspan="2"><b>Your Profile Information</b> </td>
-			<td><div align="right"><button id="button"><a href="logout.php">logout</a></button></div></td>
+
 		</tr>
 		<tr>
 	    	<td width="82" valign="top"><div align="left">FirstName:</div></td>
@@ -139,10 +157,9 @@
 					$stmt->close();
 				}
 				$mysqli->close();
-	    	?></td>
+	}?></td>
 		</tr>
 	</table>
-	<button id="button"><a href="homepage.php">Home</a></button>
 	
 	<!-- <p align="center"><a href="login.php"></a></p> -->
 	
