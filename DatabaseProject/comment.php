@@ -8,12 +8,14 @@ include "connectdb.php";
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+<div class = "container-fluid ">
+
 	<?php
 
 	if(!isset($_SESSION["UserID"])) {
-		echo "You are not logged in. You must be logged in to comment. Redirecting to login... \n";
-		header("refresh: 3; login.php");
-		'<br/><p>You will be redirected in 3 seconds or click <a href="index.php">here</a>.</p>';
+		echo "You are not logged in. You must be logged in to comment. <br> Redirecting to login... \n";
+//		header("refresh: 3; login.php");
+	echo	"<br/><p class = 'test' >You will be redirected in 3 seconds or click <a href='index.php'>here</a>.</p>";
 	}	
 	else{
 	?>
@@ -128,7 +130,7 @@ include "connectdb.php";
 	// 	echo $c['ctext'];
 	// }
 	$mysqli->close();
-	}?>	</p><br/>
-	<button id="button"><a href="index.php">Homepage</a></button>
+	}?>	
+		</div>
 </body>
 </html>

@@ -11,8 +11,8 @@ else if(!(isset($_POST["id"]) && isset($_POST["pass"]))){
 
 <!DOCTYPE html>
 <html>
-<!--Kevin Li-->
-<style>
+	<!--Kevin Li-->
+	<style>
 body {
   padding-top: 0px;
 
@@ -23,46 +23,73 @@ body {
   padding: 15px;
   margin:  auto;
 }
-</style>
-<body>
-<div class = "container">
-<div class = "row">	
-	<ul class = "nav nav-tabs">
-	<li><a href="index.php">Homepage</a></li>
-	<li><a href="profile.php">View Profile</a></li>
-	<li><a href="PostEvent_html.php">Post Event</a></li>
-	<li><a href="event_veiwer.php">View Event & Sign Up</a></li>
-	<li><a href="check_events.php">Check Event</a></li>
-	<li><a href="delete.php">Delete Comment</a></li>
-	<li><a href="comment.php">Post Comment</a></li>
-	
-	<li class ='navbar-right'><a href="register.php">Register</a></li>
-	</ul>
-</div>
-</div>
- <div class="container form-signin">
-   <h1><p style="text-align: center;">Sign In </p></h1>
+	</style>
+	<body>
+		<div class = "container">
+			<div class = "row">	
+				<ul class = "nav nav-tabs">
+					<li><a href="index.php">Homepage</a>
+					<!--
+						<li class="dropdown">
+						<a class = "dropdown-menu dropdown-toggle" data-toggle="dropdown" >Homepage</a>
+							<ul class = "dropdown-menu">
+							<li>a test</li>
+							<li>2a test</li>
+							<li>1a test</li>
+							
+							</ul>
+-->				
+				</li>
+					<li>
+						<a href="profile.php">View Profile</a>
+					</li>
+					<li>
+						<a href="PostEvent_html.php">Post Event</a>
+					</li>
+					<li>
+						<a href="event_veiwer.php">View Event & Sign Up</a>
+					</li>
+					<li>
+						<a href="check_events.php">Check Event</a>
+					</li>
+					<li>
+						<a href="delete.php">Delete Comment</a>
+					</li>
+					<li>
+						<a href="comment.php">Post Comment</a>
+					</li>
+
+					<li class ='navbar-right'>
+						<a href="register.php">Register</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="container form-signin">
+			<h1>
+				<p style="text-align: center;">Sign In </p>
+			</h1>
 
 
- 
-   <form method="post" action="login.php">
-       <input type="text" class = "form-control" name="id" placeholder="Person ID"  required>
-       <input type="password" class = "form-control" name="pass" placeholder="Password" required>
-    <p class="remember_me">
-     <label>
-         <input type="checkbox" name="remember_me">
-            <span style="font-weight:normal;"> Remember me on this computer</span>
-        </label>
-    </p>
-    <button type = "submit" class = "btn btn-lg btn-block btn-primary">
-     Login
-    </button>
 
- 
-  </div>
-</form>
-</body>
-<?php
+			<form method="post" action="login.php">
+				<input type="text" class = "form-control" name="id" placeholder="Person ID"  required>
+					<input type="password" class = "form-control" name="pass" placeholder="Password" required>
+						<p class="remember_me">
+							<label>
+								<input type="checkbox" name="remember_me">
+									<span style="font-weight:normal;"> Remember me on this computer</span>
+								</label>
+							</p>
+							<button type = "submit" class = "btn btn-lg btn-block btn-primary">
+									Login
+							</button>
+
+
+						</div>
+					</form>
+				</body>
+				<?php
 }  //Finish off the else if above
 
 else if ($stmt = $mysqli->prepare("select pid,fname from person where pid= ? and passwd = ?")) {
@@ -97,4 +124,4 @@ else if ($stmt = $mysqli->prepare("select pid,fname from person where pid= ? and
  
 ?>
 
-</html>
+			</html>

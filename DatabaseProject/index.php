@@ -3,35 +3,49 @@ include "connectdb.php";
 ?>
 <!DOCTYPE html>
 <html>
+<style>
+    .bs-example{
+    	margin: 20px;
+    }
+</style>
 <head>
 	<title> Home Page </title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<div class = "container">
-<div class = "row">	
-	<ul class = "nav nav-tabs">
-	<li><a href="profile.php">View Profile</a></li>
 
+<div class = "container-fluid ">
+<div class = "row">	
+<nav class = "navbar navbar-default transparent  navbar-fixed-top">
+<a class = "navbar-brand pull-left" href="#"> POLY Club
+		</a>
+		<div class = "collapse navbar-collapse">
+	<ul class = "nav navbar-nav pull-right ">
+	<li class="active"><a href="#">Home</a></li>
+	<li><a href="profile.php">Profile</a></li>
 	<li><a href="PostEvent_html.php">Post Event</a></li>
-	<li><a href="event_veiwer.php">View Event & Sign Up</a></li>
+	<li><a href="event_veiwer.php">View Event</a></li>
 	<li><a href="check_events.php">Check Event</a></li>
 	<li><a href="delete.php">Delete Comment</a></li>
 	<li><a href="comment.php">Post Comment</a></li>
+
 <?php
 	if(isset($_SESSION["UserID"]))
-	 echo "<li class ='navbar-right'><a href='logout.php'>Logout</a> </li>";
+	 echo "<li><a href='logout.php'>Logout</a> </li>";
 	else
-		echo "<li class ='navbar-right'><a href='login.php'>Login</a></li>";
+		echo "<li><a  href='login.php'>Login</a></li>";
 ?>
 	</ul>
+		</nav>
+		</div>
 </div>
 </div>
+
 	<?php
 	if(isset($_SESSION["error"]) && $_SESSION["error"] == 1) {
 		echo "You were redirected here because of an error";
 	}
-	$events = $mysqli->query("SELECT ename FROM event WHERE is_public_e = 1 AND edatetime >= NOW() AND edatetime <= NOW() + INTERVAL 7 DAY;");
+	$events = $mysqli->query("SELECT ename FROM event WHERE is_public_e = 1 AND edatetime >= NOW();");
 	$e = $events->fetch_assoc();
 	$printy = $mysqli->query("SELECT cname, descr, topic FROM club_topics NATURAL JOIN club;");
 	$p = $printy->fetch_assoc();
@@ -52,13 +66,14 @@ if($stmt= $mysqli->prepare("SELECT fname, lname FROM person WHERE pid = ?")){
 }
 ?>
 <?php } ?>
-	<div id="Nyulogo">
+
+<div id="Nyulogo">
 		<center>
-			<a href = "http://www.Nyu.edu"><img src="NYUPoly.jpg" alt="NYU POLYTECHNIC UNIVERSITY" width="750" height="250">
-		</a></center>
+			<img src="NYUPoly.jpg" alt="NYU POLYTECHNIC UNIVERSITY" width="750" height="250">
+		</center>
 	</div>
 	
-	<h2 class="text-primary text-center" style="font-size:35px;"> Clubs and Topics </h2>
+	<h2 class="text-primary text-center" style="font-size:35px;"> <br><br>Clubs and Topics </h2>
 	
 	
 	<div class = "container-fluid">
